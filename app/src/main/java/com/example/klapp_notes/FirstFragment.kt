@@ -11,6 +11,7 @@ import com.example.klapp_notes.databinding.FragmentFirstBinding
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
+/* hui */
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
