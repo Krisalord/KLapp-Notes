@@ -3,7 +3,18 @@
     <style name="Base.Theme.KLappNotes" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@color/gray</item>
+        <item name="android:navigationBarColor">@color/gray</item>
+        <item name="colorPrimary">@color/gray</item>
     </style>
+
+    <style name="AppToolbarTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">40sp</item> <!-- Adjust the text size as needed -->
+        <item name="android:textColor">@color/text</item> <!-- Optional: Set text color -->
+        <!-- Other text appearance attributes can be added here -->
+    </style>
+
+
 
     <style name="Theme.KLappNotes" parent="Base.Theme.KLappNotes" />
 </resources>
