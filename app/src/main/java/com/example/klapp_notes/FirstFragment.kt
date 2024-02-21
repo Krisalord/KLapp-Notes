@@ -27,12 +27,13 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonFirst.setOnClickListener {
+            // Inflate the custom layout
+            val customView = layoutInflater.inflate(R.layout.custom_dialog_layout, null)
+
             // Create an AlertDialog.Builder
             val alertDialogBuilder = AlertDialog.Builder(requireContext())
-
-            // Set the title and message for the dialog
-            alertDialogBuilder.setTitle("Add new work space")
-            alertDialogBuilder.setMessage("write your title")
+                .setView(customView)
+                .setTitle("Add new work space")
 
             // Set positive button and its click listener
             alertDialogBuilder.setPositiveButton("+") { dialog, which ->
