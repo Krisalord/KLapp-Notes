@@ -17,6 +17,7 @@
             android:layout_centerInParent="true"
             android:layout_margin="10dp"
             android:textSize="20sp"
+            android:textColor="#ffffff"
             android:text="wokspace title" />
 
         <TextView
@@ -27,6 +28,7 @@
             android:layout_centerInParent="true"
             android:layout_margin="10dp"
             android:textSize="30sp"
+            android:textColor="#ffffff"
             android:text="Add new workspace" />
 
         <Button
