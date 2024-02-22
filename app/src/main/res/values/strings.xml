@@ -13,4 +13,7 @@
     <string name="workspacePage">
         Your workspaces
     </string>
+    <string name="work_spaces">Workspaces</string>
+    <string name="info">Info</string>
+    <string name="klapp_notes">KLapp Notes</string>
 </resources>
