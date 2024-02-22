@@ -6,7 +6,7 @@
     <string name="second_fragment_label">KLapp Notes</string>
     <string name="next">+</string>
     <string name="previous">+</string>
-    <string name="leftBar"> Something, Workspaces, Info</string>
+    <string name="leftBar"> Workspaces Info</string>
     <string name="landingPage">
         You have no work spaces yet\nAdd workspace
     </string>
