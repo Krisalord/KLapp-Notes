@@ -4,31 +4,44 @@
     android:layout_height="match_parent">
 
     <!-- res/layout/custom_dialog_layout.xml -->
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@color/gray_alert" >
-
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_popup_background">
 
         <TextView
+            android:id="@+id/textViewPopup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Work space title" />
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:textSize="20sp"
+            android:text="wokspace title" />
+
+        <TextView
+            android:id="@+id/textViewEnter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textViewPopup"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:textSize="30sp"
+            android:text="Add new workspace" />
 
         <Button
-            android:id="@+id/buttonPlus"
+            android:id="@+id/buttonOpenSecondFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewPopup"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/transparent"
             android:text="+"
-            android:textSize="24sp"
-            android:textColor="#e2b714" />
-
-        <!-- Add more views as needed -->
-
-    </LinearLayout>
+            android:textColor="#e2b714"
+            android:textSize="60sp" />
 
 
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
