@@ -7,7 +7,7 @@
     tools:context=".ThirdFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
         tools:layout_editor_absoluteY="1dp">
@@ -113,6 +113,14 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="406dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="14dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
