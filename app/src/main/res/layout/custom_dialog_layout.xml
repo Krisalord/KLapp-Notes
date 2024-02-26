@@ -32,7 +32,7 @@
             android:text="Add new workspace" />
 
         <Button
-            android:id="@+id/buttonOpenSecondFragment"
+            android:id="@+id/buttonOpenActivityNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textViewPopup"

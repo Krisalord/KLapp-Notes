@@ -59,13 +59,13 @@ class FirstFragment : Fragment() {
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
 
         // Set up the button click listener in the PopupWindow
-        val openSecondFragmentButton = customView.findViewById<Button>(R.id.buttonOpenSecondFragment)
+        val openSecondFragmentButton = customView.findViewById<Button>(R.id.buttonOpenActivityNote)
         openSecondFragmentButton.setOnClickListener {
             // Dismiss the PopupWindow when the button is clicked
             popupWindow.dismiss()
 
             // Navigate to the SecondFragment
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+            findNavController().navigate(R.id.action_FirstFragment_to_activityNoteFragment2)
         }
     }
 
