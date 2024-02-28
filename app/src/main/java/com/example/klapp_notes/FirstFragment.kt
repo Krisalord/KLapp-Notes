@@ -64,8 +64,8 @@ class FirstFragment : Fragment() {
             // Dismiss the PopupWindow when the button is clicked
             popupWindow.dismiss()
 
-            // Navigate to the SecondFragment
-            findNavController().navigate(R.id.action_FirstFragment_to_activityNoteFragment2)
+
+            findNavController().navigate(R.id.action_FirstFragment_to_activity_workspace_layout)
         }
     }
 
