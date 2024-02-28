@@ -16,4 +16,6 @@
     <string name="work_spaces">Workspaces</string>
     <string name="info">Info</string>
     <string name="klapp_notes">KLapp Notes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
