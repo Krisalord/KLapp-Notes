@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- Top Bar -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +48,6 @@
                 android:gravity="center|end"
                 android:orientation="horizontal">
 
-
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
@@ -66,49 +66,46 @@
                     android:textColor="#646669"
                     android:textSize="42sp" />
             </LinearLayout>
-
-
         </LinearLayout>
 
+        <!-- Main Content -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
+            <!-- Container for dynamically added FrameLayouts -->
             <LinearLayout
+                android:id="@+id/containerLayout"
                 android:layout_width="874dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                <FrameLayout
-                    android:id="@+id/tableSquare"
-                    android:layout_width="330dp"
-                    android:layout_height="fill_parent"
-                    android:layout_margin="10dp"
-                    android:background="#646669"
-                    android:visibility="gone">
-                </FrameLayout>
-
-
+                <!-- This layout will serve as the container for dynamically added FrameLayouts -->
             </LinearLayout>
 
+            <!-- Fragment Container -->
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
 
+            <!-- Sidebar -->
             <LinearLayout
                 android:layout_width="354dp"
                 android:layout_height="match_parent"
                 android:gravity="end"
                 android:orientation="vertical">
 
+                <!-- Calendar FrameLayout -->
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#646669">
+                    android:background="#646669"
+                    android:layout_margin="10dp">
 
                     <CalendarView
                         android:id="@+id/calendarView2"
@@ -116,19 +113,24 @@
                         android:layout_height="wrap_content" />
                 </FrameLayout>
 
+                <!-- Empty FrameLayout -->
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"
-                    android:background="#646669" />
+                    android:background="#646669"
+                    android:layout_margin="10dp"/>
 
+                <!-- Buttons Layout -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_horizontal|center_vertical"
-                    android:orientation="horizontal">
-                    <!-- layout for buttons -->
+                    android:orientation="horizontal"
+                    android:layout_margin="10dp">
+
+                    <!-- Add Table Section -->
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
@@ -153,9 +155,11 @@
                             android:background="@android:color/transparent"
                             android:text="+"
                             android:textColor="#e2b714"
-                            android:textSize="60sp" />
+                            android:textSize="60sp"
+                            android:layout_gravity="center"/>
                     </LinearLayout>
 
+                    <!-- Add Note Section -->
                     <LinearLayout
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
@@ -180,12 +184,10 @@
                             android:background="@android:color/transparent"
                             android:text="+"
                             android:textColor="#e2b714"
-                            android:textSize="60sp" />
+                            android:textSize="60sp"
+                            android:layout_gravity="center"/>
                     </LinearLayout>
-
-
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
