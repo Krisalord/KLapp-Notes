@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_workspaces">
+    tools:context=".Activity_workspaces_layout">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,7 +65,6 @@
                     android:text="@string/info"
                     android:textColor="#646669"
                     android:textSize="42sp" />
-
             </LinearLayout>
 
 
@@ -75,6 +74,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="874dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1">
+
+                <FrameLayout
+                    android:id="@+id/tableSquare"
+                    android:layout_width="330dp"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="10dp"
+                    android:background="#646669"
+                    android:visibility="gone">
+                </FrameLayout>
+
+
+            </LinearLayout>
 
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView"
@@ -128,7 +144,7 @@
                             android:text="Add Table" />
 
                         <Button
-                            android:id="@+id/buttonAddNote"
+                            android:id="@+id/buttonAddTable"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/textViewPopup"
@@ -155,7 +171,7 @@
                             android:text="Add Note" />
 
                         <Button
-                            android:id="@+id/buttonAddTable"
+                            android:id="@+id/buttonAddNote"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/textViewPopup"
