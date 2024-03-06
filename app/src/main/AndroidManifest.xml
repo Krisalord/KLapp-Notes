@@ -13,6 +13,12 @@
         android:theme="@style/Theme.KLappNotes"
         tools:targetApi="31">
         <activity
+            android:name=".WorkspaceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NoteActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
