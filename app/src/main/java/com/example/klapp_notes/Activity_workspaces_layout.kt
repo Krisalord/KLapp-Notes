@@ -14,6 +14,8 @@ import android.graphics.Paint
 import android.graphics.Color
 import android.view.Gravity
 import android.widget.ImageView
+import android.widget.PopupMenu
+
 
 
 import android.widget.ImageButton
@@ -102,12 +104,36 @@ class Activity_workspaces_layout : Fragment() {
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        layoutParams.gravity = Gravity.END or Gravity.CENTER_VERTICAL
+        layoutParams.gravity = Gravity.END or Gravity.TOP // Updated gravity to top-right corner
         hamburgerMenu.layoutParams = layoutParams
         hamburgerMenu.setImageResource(R.drawable.ic_hamburger_menu)
 
         // Add the hamburger menu ImageView to the FrameLayout
         frameLayout.addView(hamburgerMenu)
+
+        // Set an onClickListener for the hamburger menu
+        hamburgerMenu.setOnClickListener { view ->
+            // Create a PopupMenu
+            val popupMenu = PopupMenu(requireContext(), view)
+            popupMenu.menuInflater.inflate(R.menu.table_options_menu, popupMenu.menu)
+
+            // Set a click listener for menu items
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_delete_table -> {
+                        // Handle delete action
+                        deleteTable(frameLayout)
+                        true
+                    }
+                    // Add more menu items as needed
+
+                    else -> false
+                }
+            }
+
+            // Show the PopupMenu
+            popupMenu.show()
+        }
     }
 
     private fun deleteTable(frameLayout: FrameLayout) {
@@ -118,4 +144,6 @@ class Activity_workspaces_layout : Fragment() {
         // Decrement the table counter
         tableCounter--
     }
+
+
 }
