@@ -7,7 +7,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,11 +32,14 @@ class MainActivity : AppCompatActivity() {
             .setView(dialogView)
             .create()
 
+
         submitButton.setOnClickListener {
-            //save entered text to variable for db
+            //save entered text to variable (workspace name) for future use in db
             val enteredText = editText.text.toString()
 
+            //launch function to open new page
             navigateToWorkspaceActivity()
+            //close dialog
             dialog.dismiss()
         }
 
