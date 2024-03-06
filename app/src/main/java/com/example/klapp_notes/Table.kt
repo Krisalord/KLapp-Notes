@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class Table(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+    var tableName: String = "" // Add a field for the table name
     // Add other properties as needed
 )

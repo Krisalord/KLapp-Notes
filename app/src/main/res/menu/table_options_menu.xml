@@ -3,5 +3,8 @@
     <item
         android:id="@+id/menu_delete_table"
         android:title="Delete Table" />
+    <item
+        android:id="@+id/menu_rename_table"
+        android:title="Rename Table" />
     <!-- Add more menu items as needed -->
 </menu>

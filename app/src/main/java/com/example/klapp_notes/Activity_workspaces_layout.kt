@@ -7,18 +7,21 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.Paint
 import android.graphics.Color
 import android.view.Gravity
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.PopupMenu
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import android.widget.TextView
-
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class TableViewModel : ViewModel() {
     val tableIds = mutableListOf<Int>()
@@ -112,7 +115,29 @@ class Activity_workspaces_layout : Fragment() {
         textView.setTextColor(Color.BLACK)
         textView.gravity = Gravity.CENTER
         frameLayout.addView(textView)
+
+        // Save the table to Room database
+        saveTableToDatabase(frameLayout.id, tableName)
     }
+
+    private fun saveTableToDatabase(tableId: Int, tableName: String) {
+        // Access the database instance
+        val database = AppDatabase.getDatabase(requireContext())
+
+        // Use a coroutine to perform database operations
+        lifecycleScope.launch {
+            // Get the table DAO
+            val tableDao = database.tableDao()
+
+            // Create a new Table instance
+            val table = Table()
+
+
+            // Insert the table into the database
+            tableDao.insertTable(table)
+        }
+    }
+
 
     private fun addHamburgerMenu(frameLayout: FrameLayout) {
         val hamburgerMenu = ImageView(requireContext())
@@ -135,6 +160,12 @@ class Activity_workspaces_layout : Fragment() {
                         deleteTable(frameLayout)
                         true
                     }
+
+                    R.id.menu_rename_table -> {
+                        renameTable(frameLayout)
+                        true
+                    }
+
                     else -> false
                 }
             }
@@ -150,5 +181,48 @@ class Activity_workspaces_layout : Fragment() {
 
         // Remove the table ID from the ViewModel
         tableViewModel.tableIds.remove(frameLayout.id)
+    }
+
+    private fun renameTable(frameLayout: FrameLayout) {
+        val textView =
+            frameLayout.getChildAt(1) as TextView // Assuming the TextView is the second child
+        val currentName = textView.text.toString()
+
+        val dialog = AlertDialog.Builder(requireContext())
+        val editText = EditText(requireContext())
+        editText.setText(currentName)
+        dialog.setView(editText)
+            .setTitle("Rename Table")
+            .setPositiveButton("OK") { _, _ ->
+                val newName = editText.text.toString()
+                textView.text = newName
+
+                // Update the table name in the database
+                val tableId = frameLayout.id
+                updateTableNameInDatabase(tableId, newName)
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun updateTableNameInDatabase(tableId: Int, newName: String) {
+        // Access the database instance
+        val database = AppDatabase.getDatabase(requireContext())
+
+        // Use a coroutine to perform database operations
+        lifecycleScope.launch {
+            // Get the table from the database
+            val tableDao = database.tableDao()
+            val table = tableDao.getTableById(tableId)
+
+            // Check if the table is not null
+            table?.let {
+                // Update the table name
+                it.tableName = newName
+
+                // Update the table in the database
+                tableDao.updateTable(it)
+            }
+        }
     }
 }

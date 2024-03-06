@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import androidx.navigation.fragment.findNavController
+
 
 class ActivityNote : Fragment() {
 
@@ -35,7 +37,8 @@ class ActivityNote : Fragment() {
                 // Save the note to the Room database
                 saveNoteToDatabase(noteText)
 
-                // You can add any additional logic here, like clearing the EditText or navigating to another fragment/activity.
+                // Navigate back to Activity_workspaces_layout fragment
+                findNavController().navigate(R.id.action_activityNoteFragment_to_activity_workspace_layout)
             }
         }
     }
@@ -47,3 +50,4 @@ class ActivityNote : Fragment() {
         }
     }
 }
+

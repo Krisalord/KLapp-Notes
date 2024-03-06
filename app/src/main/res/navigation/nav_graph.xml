@@ -20,7 +20,11 @@
         android:id="@+id/activityNoteFragment"
         android:name="com.example.klapp_notes.ActivityNote"
         android:label="ActivityNote"
-        tools:layout="@layout/activity_note"/>
+        tools:layout="@layout/activity_note">
+        <action
+            android:id="@+id/action_activityNoteFragment_to_activity_workspace_layout"
+            app:destination="@id/activity_workspace_layout" />
+    </fragment>
     <fragment
         android:id="@+id/activity_workspace_layout"
         android:name="com.example.klapp_notes.Activity_workspaces_layout"
