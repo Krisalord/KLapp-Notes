@@ -39,6 +39,10 @@ class ActivityNote : Fragment() {
 
                 // Navigate back to Activity_workspaces_layout fragment
                 findNavController().navigate(R.id.action_activityNoteFragment_to_activity_workspace_layout)
+
+                // In ActivityNote fragment, when you want to navigate back
+                findNavController().popBackStack(R.id.activity_workspace_layout, false)
+
             }
         }
     }
@@ -49,5 +53,7 @@ class ActivityNote : Fragment() {
             AppDatabase.getDatabase(requireContext()).notesDao().insert(note)
         }
     }
+
+
 }
 
