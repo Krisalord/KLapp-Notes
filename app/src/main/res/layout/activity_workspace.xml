@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NoteActivity"
-    android:padding="20dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
     <!-- Navbar -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,63 +54,117 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
-        <!-- Note area -->
+        <!-- Task tables -->
         <LinearLayout
-            android:layout_width="fill_parent"
+            android:layout_width="874dp"
             android:layout_height="fill_parent"
             android:layout_weight="1">
+
             <FrameLayout
-                android:layout_width="fill_parent"
+                android:id="@+id/tableSquare"
+                android:layout_width="330dp"
                 android:layout_height="fill_parent"
+                android:layout_margin="10dp"
                 android:background="#646669"
-                android:layout_margin="10dp">
-                <EditText
-                    android:id="@+id/editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Write your text here"
-                    android:textSize="40sp"/>
-                <Button
-                    android:id="@+id/saveButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Save"
-                    android:layout_below="@id/editText"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"/>
+                android:visibility="gone">
             </FrameLayout>
+
+
         </LinearLayout>
-        <!-- Toolbox -->
+        <!-- Editor Tools -->
         <LinearLayout
             android:layout_width="354dp"
             android:layout_height="match_parent"
             android:gravity="end"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp"
+            >
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:background="#646669"
-                android:layout_margin="10dp">
+                >
+
                 <CalendarView
                     android:id="@+id/calendarView2"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    />
             </FrameLayout>
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:background="#646669"
-                android:layout_margin="10dp"/>
+                android:background="#646669" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal">
+                <!-- layout for buttons -->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/addTableText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textAlignment="center"
+                        android:text="Add Table"
+                         />
+
+                    <Button
+                        android:id="@+id/buttonAddTable"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/transparent"
+                        android:text="+"
+                        android:textColor="#e2b714"
+                        android:textSize="60sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/addNoteText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="32sp"
+                        android:textAlignment="center"
+                        android:text="Add Note" />
+
+                    <Button
+                        android:id="@+id/buttonAddNote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@android:color/transparent"
+                        android:text="+"
+                        android:textColor="#e2b714"
+                        android:textSize="60sp"
+                        />
+                </LinearLayout>
+
+
             </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
