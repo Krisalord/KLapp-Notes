@@ -14,14 +14,23 @@ class WorkspaceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workspace)
 
-        val openWorkspaceActivityButton: Button = findViewById(R.id.buttonAddNote)
-        openWorkspaceActivityButton.setOnClickListener {
+        val openNewNote: Button = findViewById(R.id.buttonAddNote)
+        openNewNote.setOnClickListener {
             navigateToNoteActivity()
+        }
+
+        val createNewTable: Button = findViewById(R.id.buttonAddTable)
+        createNewTable.setOnClickListener {
+            addNewTable()
         }
     }
 
     private fun navigateToNoteActivity(){
         val intent = Intent(this, NoteActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun addNewTable(){
+        
     }
 }

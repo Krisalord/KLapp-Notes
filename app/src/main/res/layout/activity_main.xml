@@ -56,6 +56,7 @@
     </LinearLayout>
     <!-- Page content -->
     <LinearLayout
+        android:id="@+id/noWorkspacesBox"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -83,4 +84,12 @@
             android:textColor="#e2b714"
             android:textSize="82sp" />
     </LinearLayout>
+    <!-- Workspaces container -->
+    <LinearLayout
+        android:id="@+id/workspacesBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start|top"
+        android:orientation="horizontal"
+        android:visibility="gone" />
 </LinearLayout>
