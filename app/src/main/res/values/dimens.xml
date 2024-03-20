@@ -2,4 +2,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="popup_width">510dp</dimen>
     <dimen name="popup_height">250dp</dimen>
+    <dimen name="square_table_size">100dp</dimen>
+    <dimen name="width_table_square">100dp</dimen>
+
 </resources>
