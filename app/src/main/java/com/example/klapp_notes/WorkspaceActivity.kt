@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class WorkspaceActivity : AppCompatActivity() {
 
@@ -31,7 +33,7 @@ class WorkspaceActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToNoteActivity(){
+    private fun navigateToNoteActivity() {
         val intent = Intent(this, NoteActivity::class.java)
         startActivity(intent)
     }
@@ -55,6 +57,26 @@ class WorkspaceActivity : AppCompatActivity() {
 
         // Add the table to the container layout
         containerLayout.addView(tableLayout)
+
+        // Create a new table instance with workspace ID
+        val tableName = "Table"  // You can set a default name here or get it from user input
+        val table = Table(tableName = tableName, workspaceId = 1) // Assuming workspace ID is 1
+
+        // Insert the table into the database
+        saveTableToDatabase(table)
     }
 
+    private fun saveTableToDatabase(table: Table) {
+        // Access the database instance
+        val database = AppDatabase.getDatabase(this)
+
+        // Use a coroutine to perform database operations
+        lifecycleScope.launch {
+            // Get the table DAO
+            val tableDao = database.tableDao()
+
+            // Insert the table into the database
+            tableDao.insertTable(table)
+        }
+    }
 }
