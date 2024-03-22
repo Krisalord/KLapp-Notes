@@ -3,36 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    >
 
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.klapp_notes.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
 
-        <action
-            android:id="@+id/action_FirstFragment_to_activity_workspace_layout"
-            app:destination="@id/activity_workspace_layout" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/activityNoteFragment"
-        android:name="com.example.klapp_notes.ActivityNote"
-        android:label="ActivityNote"
-        tools:layout="@layout/activity_note">
-        <action
-            android:id="@+id/action_activityNoteFragment_to_activity_workspace_layout"
-            app:destination="@id/activity_workspace_layout" />
-    </fragment>
-    <fragment
-        android:id="@+id/activity_workspace_layout"
-        android:name="com.example.klapp_notes.Activity_workspaces_layout"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/activity_workspaces_layout">
-
-    <action
-        android:id="@+id/action_workspace_layout_to_ActivityNote"
-        app:destination="@id/activityNoteFragment" />
-    </fragment>
 </navigation>
