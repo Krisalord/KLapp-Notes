@@ -4,5 +4,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#323437</color>
     <color name="text">#646669</color>
+    <color name="yellow">#e2b714</color>
     <color name="gray_alert">#D1D0C5</color>
+    <color name="colorTableBorder">#FFFFFF</color>
+    <color name="colorTableSquareBackground">#646669</color>
 </resources>
+
