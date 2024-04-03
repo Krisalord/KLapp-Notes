@@ -3,7 +3,9 @@ package com.example.klapp_notes
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -69,6 +71,17 @@ class MainActivity : AppCompatActivity() {
                         workspacesBox.addView(workspaceBox)
                     }
                 }
+
+                // Inside onCreate() function after the for loop
+                val addButton = Button(this@MainActivity)
+                addButton.text = "+"
+                addButton.setTextColor(Color.parseColor("#FFFF00")) // Set text color to yellow
+                addButton.setBackgroundColor(Color.TRANSPARENT) // Set background to transparent
+                addButton.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40f) // Set text size to 20sp
+                addButton.setOnClickListener {
+                    showCustomDialog()
+                }
+                workspacesBox.addView(addButton)
             }
         }
     }
