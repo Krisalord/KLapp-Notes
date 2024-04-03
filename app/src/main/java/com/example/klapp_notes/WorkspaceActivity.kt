@@ -9,11 +9,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class WorkspaceActivity : AppCompatActivity() {
 
     private lateinit var containerLayout: LinearLayout
-
+    var workspaceId = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workspace)
@@ -30,7 +32,7 @@ class WorkspaceActivity : AppCompatActivity() {
             addNewTable()
         }
 
-        val workspaceId = intent.getIntExtra("WORKSPACE_ID", -1)
+        workspaceId = intent.getIntExtra("WORKSPACE_ID", -1)
 
     }
 
@@ -58,6 +60,28 @@ class WorkspaceActivity : AppCompatActivity() {
 
         // Add the table to the container layout
         containerLayout.addView(tableLayout)
+
+
+
+        // Create a new table instance with workspace ID
+        val tableName = "Table"  // You can set a default name here or get it from user input
+        val table = Table(tableName = tableName, workspaceId = workspaceId)
+
+        // Insert the table into the database
+        saveTableToDatabase(table)
     }
 
+    private fun saveTableToDatabase(table: Table) {
+        // Access the database instance
+        val database = AppDatabase.getDatabase(this)
+
+        // Use a coroutine to perform database operations
+        lifecycleScope.launch {
+            // Get the table DAO
+            val tableDao = database.tableDao()
+
+            // Insert the table into the database
+            tableDao.insert(table)
+        }
+    }
 }
