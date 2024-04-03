@@ -110,10 +110,12 @@ class MainActivity : AppCompatActivity() {
             val workspaceName = editText.text.toString()
             // Launch a coroutine to call the suspend function
             lifecycleScope.launch {
+
                 // Insert the workspace name into the database and retrieve the ID
                 val workspaceId = database.workspaceDao().insert(Workspace(name = workspaceName)).toInt()
                 //launch function to open new page
                 navigateToWorkspaceActivity(workspaceId)
+
             }
             //close dialog
             dialog.dismiss()
@@ -122,7 +124,8 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
     private fun navigateToWorkspaceActivity(workspaceId: Int) {
-        val intent = Intent(this, WorkspaceActivity::class.java)
+        val intent = Intent(this@MainActivity, WorkspaceActivity::class.java)
+        intent.putExtra("WORKSPACE_ID", workspaceId)
         startActivity(intent)
     }
 }

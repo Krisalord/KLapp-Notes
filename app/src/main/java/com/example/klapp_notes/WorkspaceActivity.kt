@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 class WorkspaceActivity : AppCompatActivity() {
 
     private lateinit var containerLayout: LinearLayout
-    var workspaceId = 0
+    private var workspaceId = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workspace)
@@ -31,8 +32,8 @@ class WorkspaceActivity : AppCompatActivity() {
         createNewTable.setOnClickListener {
             addNewTable()
         }
-
         workspaceId = intent.getIntExtra("WORKSPACE_ID", -1)
+        Log.d("WorkspaceActivity", "Received workspace ID: $workspaceId")
 
     }
 
