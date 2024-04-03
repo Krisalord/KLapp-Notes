@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
 
         // Set OnClickListener for the workspace box
         workspaceBox.setOnClickListener {
-            navigateToWorkspaceActivity()
+            navigateToWorkspaceActivity(workspace.id)
             //Toast.makeText(this, "Clicked on workspace: ${workspace.name}", Toast.LENGTH_SHORT).show()
         }
 
@@ -110,18 +110,18 @@ class MainActivity : AppCompatActivity() {
             val workspaceName = editText.text.toString()
             // Launch a coroutine to call the suspend function
             lifecycleScope.launch {
-                // Insert the workspace name into the database
-                database.workspaceDao().insert(Workspace(name = workspaceName))
+                // Insert the workspace name into the database and retrieve the ID
+                val workspaceId = database.workspaceDao().insert(Workspace(name = workspaceName)).toInt()
+                //launch function to open new page
+                navigateToWorkspaceActivity(workspaceId)
             }
-            //launch function to open new page
-            navigateToWorkspaceActivity()
             //close dialog
             dialog.dismiss()
         }
 
         dialog.show()
     }
-    private fun navigateToWorkspaceActivity() {
+    private fun navigateToWorkspaceActivity(workspaceId: Int) {
         val intent = Intent(this, WorkspaceActivity::class.java)
         startActivity(intent)
     }

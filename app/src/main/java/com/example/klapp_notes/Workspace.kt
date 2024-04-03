@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "workspaces")
 class Workspace (
     @PrimaryKey(autoGenerate = true) var id: Int = 0,
-    val name: String
+    @ColumnInfo(name = "workspace_name") val name: String
 )
 

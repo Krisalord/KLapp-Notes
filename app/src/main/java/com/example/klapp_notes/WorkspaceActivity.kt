@@ -29,6 +29,9 @@ class WorkspaceActivity : AppCompatActivity() {
         createNewTable.setOnClickListener {
             addNewTable()
         }
+
+        val workspaceId = intent.getIntExtra("WORKSPACE_ID", -1)
+
     }
 
     private fun navigateToNoteActivity(){
