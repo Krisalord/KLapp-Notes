@@ -6,7 +6,7 @@ import androidx.room.Query
 @Dao
 interface TableDao {
     @Insert
-    suspend fun insertTable(table: Table): Long
+    suspend fun insert(table: Table): Long
 
     @Query("SELECT * FROM tables WHERE workspace_id = :workspaceId")
     suspend fun getTablesByWorkspace(workspaceId: Int): List<Table>

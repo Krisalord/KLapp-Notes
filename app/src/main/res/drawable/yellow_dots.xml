@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- First dot at the left -->
+    <item
+        android:width="4dp"
+        android:height="4dp"
+        android:drawable="@drawable/yellow_dot" />
+
+
+    <item
+        android:left="8dp"
+    android:width="4dp"
+    android:height="4dp"
+    android:drawable="@drawable/yellow_dot" />
+
+
+    <item
+        android:left="16dp"
+    android:width="4dp"
+    android:height="4dp"
+    android:drawable="@drawable/yellow_dot" />
+
+</layer-list>
+

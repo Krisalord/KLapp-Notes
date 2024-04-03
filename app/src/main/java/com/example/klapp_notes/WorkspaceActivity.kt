@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.graphics.Color
 import android.util.Log
+import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
@@ -56,11 +58,26 @@ class WorkspaceActivity : AppCompatActivity() {
         // Set layout parameters for the table
         tableLayout.layoutParams = layoutParams
 
-        // Set background color for the table
-        tableLayout.setBackgroundColor(Color.WHITE)
+        // Set borders
+        tableLayout.setBackgroundResource(R.drawable.table_border)
 
         // Add the table to the container layout
         containerLayout.addView(tableLayout)
+
+        // Create a new ImageView for the hamburger menu (three yellow dots)
+        // Create a new ImageView for the hamburger menu (three yellow dots)
+        val hamburgerMenu = ImageView(this)
+        hamburgerMenu.setImageResource(R.drawable.yellow_dots) // Set the custom drawable
+
+// Set size of the hamburger menu
+        val menuSize = resources.getDimensionPixelSize(R.dimen.size_hamburger_menu)
+        val menuParams = FrameLayout.LayoutParams(menuSize, menuSize)
+        menuParams.gravity = Gravity.TOP or Gravity.END // Position the menu at the top right corner
+        hamburgerMenu.layoutParams = menuParams
+
+// Add the hamburger menu to the tableLayout
+        tableLayout.addView(hamburgerMenu)
+
 
 
 

@@ -5,4 +5,5 @@
     <dimen name="width_table_square">320dp</dimen>
     <dimen name="margin_between_tables">16dp</dimen>
     <dimen name="border_size">2dp</dimen>
+    <dimen name="size_hamburger_menu">36dp</dimen>
 </resources>
