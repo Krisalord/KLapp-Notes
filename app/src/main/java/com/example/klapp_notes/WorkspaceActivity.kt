@@ -82,7 +82,7 @@ class WorkspaceActivity : AppCompatActivity() {
             val tableDao = database.tableDao()
 
             // Insert the table into the database
-            tableDao.insert(table)
+            tableDao.insertTable(table)
         }
     }
 }
