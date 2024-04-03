@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                         workspacesBox.addView(workspaceBox)
                     }
                 }
+
                 // Inside onCreate() function after the for loop
                 val addButton = Button(this@MainActivity)
                 addButton.text = "+"
@@ -81,40 +82,28 @@ class MainActivity : AppCompatActivity() {
                     showCustomDialog()
                 }
                 workspacesBox.addView(addButton)
-
-
-
-
             }
         }
     }
 
 
     //function to create a box for each workspace
-    private fun createWorkspaceBox(workspace: Workspace): LinearLayout {
-        // Inflate the workspace template layout
+    private fun createWorkspaceBox(workspace: Workspace): LinearLayout{
+        //just add the new box to the horisontal layout element
         val workspaceBox = LayoutInflater.from(this).inflate(R.layout.workspace_template, null) as LinearLayout
-
-        // Set workspace name
         val workspaceNameTextView: TextView = workspaceBox.findViewById(R.id.workspaceNameTextView)
         workspaceNameTextView.text = workspace.name
 
         // Set OnClickListener for the workspace box
         workspaceBox.setOnClickListener {
-            navigateToWorkspaceActivity()
+            navigateToWorkspaceActivity(workspace.id)
+            //Toast.makeText(this, "Clicked on workspace: ${workspace.name}", Toast.LENGTH_SHORT).show()
         }
 
-        // Set layout parameters with margins
-        val params = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        params.setMargins(0, 0, 20, 0) // 20dp margin on the right side
-        workspaceBox.layoutParams = params
-
         return workspaceBox
-    }
 
+
+    }
 
 
 
@@ -134,19 +123,22 @@ class MainActivity : AppCompatActivity() {
             val workspaceName = editText.text.toString()
             // Launch a coroutine to call the suspend function
             lifecycleScope.launch {
-                // Insert the workspace name into the database
-                database.workspaceDao().insert(Workspace(name = workspaceName))
+
+                // Insert the workspace name into the database and retrieve the ID
+                val workspaceId = database.workspaceDao().insert(Workspace(name = workspaceName)).toInt()
+                //launch function to open new page
+                navigateToWorkspaceActivity(workspaceId)
+
             }
-            //launch function to open new page
-            navigateToWorkspaceActivity()
             //close dialog
             dialog.dismiss()
         }
 
         dialog.show()
     }
-    private fun navigateToWorkspaceActivity() {
-        val intent = Intent(this, WorkspaceActivity::class.java)
+    private fun navigateToWorkspaceActivity(workspaceId: Int) {
+        val intent = Intent(this@MainActivity, WorkspaceActivity::class.java)
+        intent.putExtra("WORKSPACE_ID", workspaceId)
         startActivity(intent)
     }
 }
