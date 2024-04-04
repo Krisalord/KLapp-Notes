@@ -3,22 +3,23 @@ package com.example.klapp_notes
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
-import android.graphics.Color
 import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
+import android.widget.PopupMenu
 
 class WorkspaceActivity : AppCompatActivity() {
 
     private lateinit var containerLayout: LinearLayout
     private var workspaceId = -1
+    private lateinit var table: Table
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workspace)
@@ -39,7 +40,7 @@ class WorkspaceActivity : AppCompatActivity() {
 
     }
 
-    private fun navigateToNoteActivity(){
+    private fun navigateToNoteActivity() {
         val intent = Intent(this, NoteActivity::class.java)
         startActivity(intent)
     }
@@ -65,31 +66,68 @@ class WorkspaceActivity : AppCompatActivity() {
         containerLayout.addView(tableLayout)
 
         // Create a new ImageView for the hamburger menu (three yellow dots)
-        // Create a new ImageView for the hamburger menu (three yellow dots)
         val hamburgerMenu = ImageView(this)
         hamburgerMenu.setImageResource(R.drawable.yellow_dots) // Set the custom drawable
 
-// Set size of the hamburger menu
+        // Set size of the hamburger menu
         val menuSize = resources.getDimensionPixelSize(R.dimen.size_hamburger_menu)
         val menuParams = FrameLayout.LayoutParams(menuSize, menuSize)
         menuParams.gravity = Gravity.TOP or Gravity.END // Position the menu at the top right corner
         hamburgerMenu.layoutParams = menuParams
+        hamburgerMenu.setOnClickListener { view ->
+            // Create a PopupMenu
+            val popupMenu = PopupMenu(this, view)
+            popupMenu.menuInflater.inflate(R.menu.table_options_menu, popupMenu.menu)
+            popupMenu.setOnMenuItemClickListener { item ->
+                // Handle menu item clicks here
+                when (item.itemId) {
+                    R.id.menu_rename_table -> {
+                        // Handle menu item 1 click
+                        true
+                    }
+                    R.id.menu_delete_table -> {
+                        // Handle menu item 2 click
+                        if (::table.isInitialized) {
+                            // Remove the table from the container layout
+                            containerLayout.removeView(tableLayout)
 
-// Add the hamburger menu to the tableLayout
+                            // Delete the table from the database
+                            deleteTableFromDatabase(table.id)
+                        }
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.show()
+        }
+
+        // Add the hamburger menu to the tableLayout
         tableLayout.addView(hamburgerMenu)
 
-
-
-
-        // Create a new table instance with workspace ID
+        // Initialize the table instance with workspace ID
         val tableName = "Table"  // You can set a default name here or get it from user input
-        val table = Table(tableName = tableName, workspaceId = workspaceId)
+        table = Table(tableName = tableName, workspaceId = workspaceId) // Initialize table
 
         // Insert the table into the database
-        saveTableToDatabase(table)
+        lifecycleScope.launch {
+            saveTableToDatabase(table)
+        }
     }
 
-    private fun saveTableToDatabase(table: Table) {
+    private suspend fun saveTableToDatabase(table: Table) {
+        // Access the database instance
+        val database = AppDatabase.getDatabase(this)
+
+        // Get the table DAO
+        val tableDao = database.tableDao()
+
+        // Insert the table into the database and capture the generated ID
+        val tableId = tableDao.insert(table)
+        table.id = tableId.toInt() // Update the table ID
+    }
+
+    private fun deleteTableFromDatabase(tableId: Int) {
         // Access the database instance
         val database = AppDatabase.getDatabase(this)
 
@@ -98,8 +136,8 @@ class WorkspaceActivity : AppCompatActivity() {
             // Get the table DAO
             val tableDao = database.tableDao()
 
-            // Insert the table into the database
-            tableDao.insert(table)
+            // Delete the table from the database using its ID
+            tableDao.deleteById(tableId.toLong())
         }
     }
 }

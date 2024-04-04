@@ -9,14 +9,14 @@
 
 
     <item
-        android:left="8dp"
+        android:top="6dp"
     android:width="4dp"
     android:height="4dp"
     android:drawable="@drawable/yellow_dot" />
 
 
     <item
-        android:left="16dp"
+        android:top="12dp"
     android:width="4dp"
     android:height="4dp"
     android:drawable="@drawable/yellow_dot" />

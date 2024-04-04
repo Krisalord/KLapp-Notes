@@ -10,4 +10,10 @@ interface TableDao {
 
     @Query("SELECT * FROM tables WHERE workspace_id = :workspaceId")
     suspend fun getTablesByWorkspace(workspaceId: Int): List<Table>
+
+    @Query("DELETE FROM tables WHERE id = :tableId")
+    suspend fun deleteById(tableId: Long)
+
+
+
 }
