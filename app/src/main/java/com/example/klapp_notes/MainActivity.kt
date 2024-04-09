@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
         lateinit var database: AppDatabase
     }
     //var to track grid order
-    var counter = 0;
+    private var counter = 0;
+    private var workspaceBox: LinearLayout? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -60,16 +61,17 @@ class MainActivity : AppCompatActivity() {
                 val workspacesBox: LinearLayout = findViewById(R.id.workspacesBox)
                 workspacesBox.visibility = View.VISIBLE
                 workspacesBox.removeAllViews()
+
                 for (workspace in workspaces) {
-                    counter++
-                    if(counter % 2 == 0){
-                        //if there are 2 workspaces if the horizontal layout, add another horisontal layout to the grid
-                        val workspaceBox = createWorkspaceBox(workspace)
-                        workspacesBox.addView(workspaceBox)
-                    }else{
-                        val workspaceBox = createWorkspaceBox(workspace)
+                    if (counter % 2 == 0) {
+                        // Create a new vertical layout every 2 workspaces
+                        workspaceBox = createVerticalLayout()
                         workspacesBox.addView(workspaceBox)
                     }
+
+                    // Add workspace to the current vertical layout
+                    workspaceBox?.addView(createWorkspaceBox(workspace))
+                    counter++
                 }
 
                 // Inside onCreate() function after the for loop
@@ -81,15 +83,30 @@ class MainActivity : AppCompatActivity() {
                 addButton.setOnClickListener {
                     showCustomDialog()
                 }
-                workspacesBox.addView(addButton)
+                // Add the addButton to the current workspaceBox if it exists, otherwise create a new one
+                if (workspaceBox != null) {
+                    workspaceBox!!.addView(addButton)
+                } else {
+                    workspaceBox = createVerticalLayout()
+                    workspacesBox.addView(workspaceBox)
+                    workspaceBox!!.addView(addButton)
+                }
             }
         }
     }
 
-
+    private fun createVerticalLayout(): LinearLayout {
+        val verticalLayout = LinearLayout(this)
+        verticalLayout.orientation = LinearLayout.VERTICAL
+        verticalLayout.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        return verticalLayout
+    }
     //function to create a box for each workspace
     private fun createWorkspaceBox(workspace: Workspace): LinearLayout{
-        //just add the new box to the horisontal layout element
+        //just add the new box to the vertical layout element
         val workspaceBox = LayoutInflater.from(this).inflate(R.layout.workspace_template, null) as LinearLayout
         val workspaceNameTextView: TextView = workspaceBox.findViewById(R.id.workspaceNameTextView)
         workspaceNameTextView.text = workspace.name
